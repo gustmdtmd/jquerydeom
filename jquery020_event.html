@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>jquery020_event.html</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+      div {
+        width: 150px;
+        height: 100px;
+        border: 1px solid black;
+        margin: 10px;
+        float: left;
+        padding: 30px;
+        text-align: center;
+        background-color: lightgray;
+      }
+
+      h3 {
+        background-color: white;
+      }
+    </style>
+    <script>
+      $(document).ready(function () {
+        let x = 0,
+          y = 0,
+          z = 0;
+
+        //요소안의 자식들 전부에 적용이 됨
+        $("div.over").mouseover(function () {
+          $(".over span").text((x += 1));
+        });
+
+        $("div.over").mouseout(function () {
+          $(".over span").text((x -= 1));
+        });
+
+        //요소안의 지정된 곳에서만 적용이 됨
+        $("div.enter").mouseenter(function () {
+          $(".enter span").text((y += 1));
+        });
+
+        $("div.enter").mouseleave(function () {
+          $(".enter span").text((y -= 1));
+        });
+
+        //좌표값
+        $("div.move").mousemove(function (e) {
+          $(".move span").text(`x=${e.pageX} y=${e.pageY}`);
+        });
+
+        //마우스 클릭하고 띠었을때
+        $("div.up").mouseup(function () {
+          $(".up span").text("mouseup");
+        });
+
+        //마우스 클릭한 순간
+        $("div.up").mousedown(function () {
+          $(".up span").text("mousedown");
+        });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="over">
+      <h3>MouseOver event triggered:</h3>
+      <span></span>
+    </div>
+
+    <div class="enter">
+      <h3>MouseEnter event triggered:</h3>
+      <span></span>
+    </div>
+
+    <div class="move">
+      <h3>MouseMove event triggered:</h3>
+      <span></span>
+    </div>
+
+    <div class="up">
+      <h3>MouseUp event triggered:</h3>
+      <span></span>
+    </div>
+
+    <div class="down">
+      <h3>MouseDown event triggered:</h3>
+      <span></span>
+    </div>
+  </body>
+</html>
